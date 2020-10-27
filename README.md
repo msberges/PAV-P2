@@ -115,12 +115,12 @@ Ejercicios
 	  estar seguros de que un segmento de señal se corresponde con voz.
 	  
 Para estar seguros de que un segmento de la señal corresponde a voz y no silencio, el incremento de nivel de potencia debería ser aproximadamente de unos 40dB.
-
-	* Duración mínima razonable de los segmentos de voz y silencio.
+		
+* Duración mínima razonable de los segmentos de voz y silencio.
 
 El valor mínimo razonable nos parece que debería ser de t = 0,5s aproximadamente.
 
-	* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
+* ¿Es capaz de sacar alguna conclusión a partir de la evolución de la tasa de cruces por cero?
 	
 No hemos sido capaces de generar la gráfica de la tasa de cruces por cero(zcr) despues de muchos intentos.
 
