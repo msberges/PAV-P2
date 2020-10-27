@@ -105,7 +105,9 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
-https://github.com/msberges/PAV-P2/blob/master/src/Captura.PNG
+
+![alt text](https://github.com/msberges/PAV-P2/blob/master/src/Captura.PNG)
+
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
@@ -131,7 +133,9 @@ En el estado ST_INIT, hemos creado 6 constantes y hemos variado sus valores hast
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
 
+
 ![alt text](https://github.com/msberges/PAV-P2/blob/master/src/Resultats.PNG)
+
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
