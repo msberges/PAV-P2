@@ -153,7 +153,7 @@ Ejercicios
   automática conseguida para el fichero grabado al efecto. 
 
 
-![alt text](https://github.com/msberges/PAV-P2/blob/master/src/comparacio.png)
+![alt text](https://github.com/msberges/PAV-P2/blob/master/src/comparacioPot.png)
 
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
