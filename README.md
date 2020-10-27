@@ -127,9 +127,9 @@ Ejercicios
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal tan
   exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
   
-   	Hemos empezado creando 2 nuevos estados de la máquina para mejorar el rendimiento del programa. Primero, tenemos el estado "ST_MAYBE_VOICE" que representa a los frames
-	que podrían ser voz después de estar en silencio. Segundo, tenemos el estado "ST_MAYBE_SILENCE" que representa todo lo contrario, los frames que podrían ser silencio 
-	después de estar en voz.
+   	Hemos empezado creando 2 nuevos estados de la máquina para mejorar el rendimiento del programa. Primero, tenemos el estado "ST_MAYBE_VOICE" que representa a los
+	frames que podrían ser voz después de estar en silencio. Segundo, tenemos el estado "ST_MAYBE_SILENCE" que representa todo lo contrario, los frames que podrían ser
+	silencio después de estar en voz.
 
     	Para estos cambios hemos definido las variables k0, k1 y k2, que representan umbrales de potencia. Si estás en ST_SILENCE y superas k1, entras en el estado
 	ST_MAYBE_VOICE y, desde aquí, si superas k2 pasas al estado ST_VOICE. En cambio, si lo reduces por debajo de k1, vuelves al estado ST_SILENCE. Si estás en el estado
