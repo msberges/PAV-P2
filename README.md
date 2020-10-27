@@ -158,6 +158,8 @@ Ejercicios
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
+Existen claras claras discrepancias entre el etiquetado manual y el automático. Podemos observar a través de wavesurfer que estas se deben a unos niveles bastante altos 	de potencia que aparecen al inicio o al final de algunos segmentos de voz. Podríamos concluir que, al menos para este caso, el umbral de decisión entre voz y ruido no es 	lo suficientemente alto para conseguir eliminar cualquier discrepancia perceptible. 
+
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
