@@ -114,9 +114,6 @@ Ejercicios
 	* Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
 	  estar seguros de que un segmento de señal se corresponde con voz.
 	  
-	 * Incremento del nivel potencia en dB, respecto al nivel correspondiente al silencio inicial, para
-	  estar seguros de que un segmento de señal se corresponde con voz.
-	  
 Para estar seguros de que un segmento de la señal corresponde a voz y no silencio, el incremento de nivel de potencia debería ser aproximadamente de unos 40dB.
 
 	* Duración mínima razonable de los segmentos de voz y silencio.
