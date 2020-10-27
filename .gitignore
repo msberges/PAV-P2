@@ -1,6 +1,5 @@
-/*/
+*/
+!docopt_c/
+!scripts/
+!src/
 
-!/docopt_c/
-!/scripts/
-!/src/
-scripts/test.sh

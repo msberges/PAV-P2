@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   float *buffer, *buffer_zeros;
   int frame_size;         /* in samples */
   float frame_duration;   /* in seconds */
-  unsigned int t, last_t; /* in frames */
+  unsigned int t, last_t, maybe_t; /* in frames */
 
   char	*input_wav, *output_vad, *output_wav;
 
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
   frame_duration = (float) frame_size/ (float) sf_info.samplerate;
   last_state = ST_UNDEF;
 
-  for (t = last_t = 0; ; t++) { /* For each frame ... */
+  for (t = last_t = maybe_t = 0; ; t++) { /* For each frame ... */
     /* End loop when file has finished (or there is an error) */
     if  ((n_read = sf_read_float(sndfile_in, buffer, frame_size)) != frame_size) break;
 
@@ -86,12 +86,39 @@ int main(int argc, char *argv[]) {
 
     /* TODO: print only SILENCE and VOICE labels */
     /* As it is, it prints UNDEF segments but is should be merge to the proper value */
+    
+    /* Original:
     if (state != last_state) {
       if (t != last_t)
         fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration, state2str(last_state));
       last_state = state;
       last_t = t;
     }
+    */
+
+    /*Test nostre:*/ 
+    
+    if (state != last_state) { /*Canvia l'estat?*/
+      if (t != last_t && t != maybe_t){ /*Comprobem que no estem en el mateix instant per seguretat*/
+
+        if (state == ST_MAYBE_VOICE || state == ST_MAYBE_SILENCE){
+          maybe_t = t;
+        } else if (state == ST_VOICE && last_state == ST_MAYBE_VOICE) { /*Confirmem el canvi a Veu*/
+            /*Ja coneixem tot l'interval de silenci -> l'escribim:*/
+            fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, maybe_t * frame_duration, state2str(ST_SILENCE)); 
+            /*Actualitzem dades:*/
+            last_t = maybe_t;
+        } else if (state == ST_SILENCE && last_state == ST_MAYBE_SILENCE) { /*Confirmem el canvi a silenci*/
+            /*Ja coneixem tot l'interval de veu -> l'escribim:*/
+            fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, maybe_t * frame_duration, state2str(ST_VOICE)); 
+            /*Actualitzem dades:*/
+            last_t = maybe_t;
+        }
+        last_state = state;
+      }
+    }
+
+    /*Fi test nostre*/
 
     if (sndfile_out != 0) {
       /* TODO: go back and write zeros in silence segments */
@@ -100,8 +127,15 @@ int main(int argc, char *argv[]) {
 
   state = vad_close(vad_data);
   /* TODO: what do you want to print, for last frames? */
-  if (t != last_t)
+  if (t != last_t){
+    if(state == ST_MAYBE_VOICE){
+      state = ST_VOICE;
+    } else if(state == ST_MAYBE_SILENCE){
+      state = ST_SILENCE;
+    } 
+    
     fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration + n_read / (float) sf_info.samplerate, state2str(state));
+  }
 
   /* clean up: free memory, close open files */
   free(buffer);
