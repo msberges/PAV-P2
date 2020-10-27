@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /* TODO: add the needed states */
-typedef enum {ST_UNDEF=0, ST_SILENCE, ST_VOICE, ST_INIT} VAD_STATE;
+typedef enum {ST_UNDEF=0, ST_SILENCE, ST_VOICE, ST_INIT, ST_MAYBE_VOICE, ST_MAYBE_SILENCE} VAD_STATE;
 
 /* Return a string label associated to each state */
 const char *state2str(VAD_STATE st);
@@ -16,6 +16,16 @@ typedef struct {
   float sampling_rate;
   unsigned int frame_length;
   float last_feature; /* for debuggin purposes */
+  float zcr_0; /*Llindar de cruces por 0*/
+  int min_voice;
+  int min_silence;
+  int maybe_cnt;
+  int frame_cnt;
+  float k0; /*Referència de potència de soroll*/
+  float k1; /*Llindar entre soroll i undef*/
+  float k2; /*Llindar entre veu i undef*/
+  float alfa1; /*marge per k1*/
+  float alfa2; /*marge per k2*/
 } VAD_DATA;
 
 /* Call this function before using VAD: 
